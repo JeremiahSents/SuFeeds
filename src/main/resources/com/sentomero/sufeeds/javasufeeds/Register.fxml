@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sentomero.sufeeds.javasufeeds.Controllers.RegisterController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="128.0" layoutY="27.0" text="REGISTER HERE !">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="100.0" prefHeight="320.0" prefWidth="370.0">
+         <VBox.margin>
+            <Insets bottom="20.0" top="25.0" />
+         </VBox.margin>
+         <children>
+            <Label layoutX="39.0" layoutY="26.0" text="First Name" />
+            <Label layoutX="41.0" layoutY="68.0" text="Last Name" />
+            <Label layoutX="41.0" layoutY="110.0" text="Student Number" />
+            <Label layoutX="41.0" layoutY="150.0" text="Course" />
+            <Label layoutX="41.0" layoutY="192.0" text="Year" />
+            <Label layoutX="41.0" layoutY="234.0" text="Password" />
+            <Label layoutX="28.0" layoutY="268.0" text="Confirm Password" />
+            <PasswordField fx:id="confirmpasswordSelect" layoutX="162.0" layoutY="266.0" prefHeight="25.0" prefWidth="193.0" />
+            <PasswordField fx:id="passwordSelect" layoutX="162.0" layoutY="230.0" prefHeight="25.0" prefWidth="193.0" />
+            <TextField layoutX="162.0" layoutY="107.0" prefHeight="25.0" prefWidth="193.0" />
+            <TextField layoutX="162.0" layoutY="64.0" prefHeight="25.0" prefWidth="193.0" />
+            <TextField layoutX="162.0" layoutY="22.0" prefHeight="25.0" prefWidth="193.0" />
+            <ComboBox fx:id="courseSelect" layoutX="162.0" layoutY="147.0" prefHeight="27.0" prefWidth="193.0" promptText="SELECT COURSE" />
+            <ComboBox fx:id="yearSelect" layoutX="162.0" layoutY="189.0" prefHeight="20.0" prefWidth="193.0" promptText="YEAR/MODULE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="registerButton" layoutX="153.0" layoutY="44.0" mnemonicParsing="false" text="REGISTER" AnchorPane.bottomAnchor="30.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
