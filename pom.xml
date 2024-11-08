@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -13,38 +14,41 @@
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
+        <ikonli.version>12.3.1</ikonli.version>
+        <javafx.version>22.0.1</javafx.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>22.0.1</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>22.0.1</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>com.dlsc.formsfx</groupId>
             <artifactId>formsfx-core</artifactId>
             <version>11.6.0</version>
         </dependency>
+        <!-- Ikonli Dependencies -->
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-core</artifactId>
-            <version>12.3.1</version>
+            <version>${ikonli.version}</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
             <artifactId>ikonli-javafx</artifactId>
-            <version>12.3.1</version>
+            <version>${ikonli.version}</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>
-            <artifactId>ikonli-fontawesome-pack</artifactId>
-            <version>12.3.1</version>
+            <artifactId>ikonli-fontawesome5-pack</artifactId>
+            <version>${ikonli.version}</version>
         </dependency>
         <dependency>
             <groupId>org.kordamp.bootstrapfx</groupId>

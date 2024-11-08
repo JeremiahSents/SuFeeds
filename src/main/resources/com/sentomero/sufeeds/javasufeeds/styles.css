@@ -1,0 +1,149 @@
+/* Main Container Styles */
+.main-container {
+    -fx-background-color: #1E1E1E;
+    -fx-min-width: 1200px;
+    -fx-min-height: 800px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    -fx-background-color: #252525;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+}
+
+.left-sidebar {
+    -fx-min-width: 250px;
+    -fx-pref-width: 250px;
+    -fx-alignment: TOP_CENTER;
+}
+
+.right-sidebar {
+    -fx-min-width: 300px;
+    -fx-pref-width: 300px;
+    -fx-background-color: #252525;
+}
+
+/* Navigation Button Styles */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-padding: 10px 15px;
+    -fx-min-width: 220px;
+    -fx-min-height: 40px;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #3E7BFA30;
+}
+
+.nav-button .nav-icon {
+    -fx-icon-color: #CCCCCC;
+    -fx-icon-size: 20px;
+}
+
+/* Feed Container Styles */
+.feed-container {
+    -fx-background-color: #1E1E1E;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-alignment: TOP_CENTER;
+}
+
+/* Post Creation Area Styles */
+.post-creation-area {
+    -fx-background-color: #252525;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-min-width: 600px;
+    -fx-max-width: 600px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
+    -fx-background-radius: 8px;
+}
+
+.post-input {
+    -fx-background-color: #333333;
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #888888;
+    -fx-min-height: 100px;
+    -fx-padding: 10px;
+    -fx-background-radius: 4px;
+}
+
+.post-button {
+    -fx-background-color: #3E7BFA;
+    -fx-text-fill: white;
+    -fx-min-width: 120px;
+    -fx-min-height: 35px;
+    -fx-cursor: hand;
+    -fx-background-radius: 4px;
+}
+
+.post-button:hover {
+    -fx-background-color: #3568D4;
+}
+
+.post-button .post-icon {
+    -fx-icon-color: white;
+    -fx-icon-size: 16px;
+}
+
+/* Feed ScrollPane Styles */
+.feed-scroll {
+    -fx-background-color: transparent;
+    -fx-min-width: 650px;
+    -fx-max-width: 650px;
+}
+
+.feed-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.feed-scroll > .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+/* Posts Container Styles */
+.posts-container {
+    -fx-spacing: 15px;
+    -fx-padding: 10px;
+}
+
+/* Individual Post Styles */
+.post {
+    -fx-background-color: #252525;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-min-width: 600px;
+    -fx-max-width: 600px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
+}
+
+/* Profile Summary Styles */
+.profile-summary {
+    -fx-background-color: #252525;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-alignment: TOP_CENTER;
+    -fx-background-radius: 8px;
+}
+
+/* Custom ScrollBar Styling */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 1;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #3E7BFA40;
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #3E7BFA80;
+}

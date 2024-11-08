@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Label?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane fx:id="mainContainer"
+            xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.sentomero.sufeeds.javasufeeds.HomeFeed"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="com.sentomero.sufeeds.javasufeeds.Controllers.HomeFeed"
+            styleClass="main-container">
+    <!-- Left Sidebar -->
+    <left>
+        <VBox fx:id="leftSidebar" styleClass="sidebar, left-sidebar">
+            <Button styleClass="nav-button" onAction="#handleHomeButton">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <FontIcon iconLiteral="fas-home" styleClass="nav-icon"/>
+                        <Label text="Home" style="-fx-text-fill: #CCCCCC;"/>
+                    </HBox>
+                </graphic>
+            </Button>
+            <Button styleClass="nav-button" onAction="#handleProfileButton">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <FontIcon iconLiteral="fas-user" styleClass="nav-icon"/>
+                        <Label text="Profile" style="-fx-text-fill: #CCCCCC;"/>
+                    </HBox>
+                </graphic>
+            </Button>
+            <Button styleClass="nav-button" onAction="#handleSettingsButton">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <FontIcon iconLiteral="fas-cog" styleClass="nav-icon"/>
+                        <Label text="Settings" style="-fx-text-fill: #CCCCCC;"/>
+                    </HBox>
+                </graphic>
+            </Button>
+        </VBox>
+    </left>
 
-</AnchorPane>
+    <!-- Center Feed -->
+    <center>
+        <VBox fx:id="feedContainer" styleClass="feed-container">
+            <!-- Post Creation Area -->
+            <VBox styleClass="post-creation-area">
+                <TextArea fx:id="postInput" promptText="What's on your mind?" styleClass="post-input" wrapText="true"/>
+                <HBox alignment="CENTER_RIGHT">
+                    <Button text="Post" styleClass="post-button" onAction="#handlePostButton">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-paper-plane" styleClass="post-icon"/>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <!-- Feed ScrollPane -->
+            <ScrollPane styleClass="feed-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <content>
+                    <VBox fx:id="postsContainer" styleClass="posts-container"/>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </center>
+
+    <!-- Right Sidebar -->
+    <right>
+        <VBox fx:id="rightSidebar" styleClass="sidebar, right-sidebar">
+            <VBox styleClass="profile-summary">
+                <!-- Profile Summary Header -->
+                <HBox spacing="10" alignment="CENTER">
+                    <FontIcon iconLiteral="fas-user-circle" iconSize="40" style="-fx-icon-color: #3E7BFA;"/>
+                    <VBox>
+                        <Label text="User Name" style="-fx-text-fill: #FFFFFF; -fx-font-size: 16px;"/>
+                        <Label text="&#64;username" style="-fx-text-fill: #888888; -fx-font-size: 14px;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </VBox>
+    </right>
+</BorderPane>
