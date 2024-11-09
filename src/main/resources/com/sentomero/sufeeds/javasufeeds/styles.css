@@ -18,12 +18,6 @@
     -fx-alignment: TOP_CENTER;
 }
 
-.right-sidebar {
-    -fx-min-width: 300px;
-    -fx-pref-width: 300px;
-    -fx-background-color: #252525;
-}
-
 /* Navigation Button Styles */
 .nav-button {
     -fx-background-color: transparent;
@@ -35,11 +29,6 @@
 
 .nav-button:hover {
     -fx-background-color: #3E7BFA30;
-}
-
-.nav-button .nav-icon {
-    -fx-icon-color: #CCCCCC;
-    -fx-icon-size: 20px;
 }
 
 /* Feed Container Styles */
@@ -83,11 +72,6 @@
     -fx-background-color: #3568D4;
 }
 
-.post-button .post-icon {
-    -fx-icon-color: white;
-    -fx-icon-size: 16px;
-}
-
 /* Feed ScrollPane Styles */
 .feed-scroll {
     -fx-background-color: transparent;
@@ -118,15 +102,6 @@
     -fx-max-width: 600px;
     -fx-background-radius: 8px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
-}
-
-/* Profile Summary Styles */
-.profile-summary {
-    -fx-background-color: #252525;
-    -fx-padding: 15px;
-    -fx-spacing: 10px;
-    -fx-alignment: TOP_CENTER;
-    -fx-background-radius: 8px;
 }
 
 /* Custom ScrollBar Styling */
