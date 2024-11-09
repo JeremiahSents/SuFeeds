@@ -32,12 +32,22 @@ public class HomeFeed {
     @FXML
     private void initialize() {
         Platform.runLater(() -> {
+            // Load CSS
             String cssPath = "/com/sentomero/sufeeds/javasufeeds/styles.css";
             if (mainContainer.getScene() != null) {
                 mainContainer.getScene().getStylesheets().add(
                         getClass().getResource(cssPath).toExternalForm()
                 );
             }
+
+            // Setup sidebar transition behaviors
+            leftSidebar.setOnMouseEntered(event -> {
+                leftSidebar.getStyleClass().add("expanded");
+            });
+
+            leftSidebar.setOnMouseExited(event -> {
+                leftSidebar.getStyleClass().remove("expanded");
+            });
         });
     }
 

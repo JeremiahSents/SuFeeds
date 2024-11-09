@@ -122,3 +122,66 @@
 .scroll-bar:vertical .thumb:hover {
     -fx-background-color: #3E7BFA80;
 }
+/* Add these to your existing styles.css */
+
+/* Sidebar Transition States */
+.left-sidebar {
+    -fx-min-width: 60px;
+    -fx-pref-width: 60px;
+    -fx-background-color: #252525;
+    -fx-padding: 15px 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: TOP_CENTER;
+    -fx-transition: all 0.3s ease;
+}
+
+.left-sidebar:hover {
+    -fx-min-width: 250px;
+    -fx-pref-width: 250px;
+}
+
+/* Hide text labels by default */
+.nav-text {
+    -fx-opacity: 0;
+    -fx-text-fill: white;
+}
+
+/* Show text labels on hover */
+.left-sidebar:hover .nav-text {
+    -fx-opacity: 1;
+}
+
+/* Icon styles */
+.nav-icon {
+    -fx-icon-size: 20px;
+    -fx-icon-color: #CCCCCC;
+}
+
+/* Adjust nav button for collapsed state */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-min-width: 40px;
+    -fx-cursor: hand;
+}
+
+.left-sidebar:hover .nav-button {
+    -fx-min-width: 230px;
+}
+
+/* Sidebar header styles */
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Hide sidebar title text when collapsed */
+.sidebar-title {
+    -fx-opacity: 0;
+}
+
+.left-sidebar:hover .sidebar-title {
+    -fx-opacity: 1;
+}
