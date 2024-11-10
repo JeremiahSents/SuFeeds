@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.sentomero.sufeeds.javasufeeds.Controllers.UsersViewController"
+            prefHeight="600.0" prefWidth="800.0"
+            stylesheets="@UsersViewstyles.css">
+
+    <VBox spacing="20" AnchorPane.topAnchor="0.0"
+          AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0"
+          AnchorPane.bottomAnchor="0.0"
+          styleClass="main-container">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <HBox alignment="CENTER">
+            <Label text="All Users" styleClass="page-title"/>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+            <VBox fx:id="usersContainer" spacing="10" styleClass="users-container"/>
+        </ScrollPane>
+
+    </VBox>
+
+</AnchorPane>

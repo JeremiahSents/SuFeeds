@@ -16,11 +16,11 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
 
         // Add the stylesheet directly
-        URL cssUrl = Main.class.getResource("/com/sentomero/sufeeds/javasufeeds/styles.css");
+        URL cssUrl = Main.class.getResource("/com/sentomero/sufeeds/javasufeeds/HomeFeedstyles.css");
         if (cssUrl != null) {
             scene.getStylesheets().add(cssUrl.toExternalForm());
         } else {
-            System.out.println("Error: styles.css not found at the specified path.");
+            System.out.println("Error: HomeFeedstyles.css not found at the specified path.");
         }
 
         // Set up the stage

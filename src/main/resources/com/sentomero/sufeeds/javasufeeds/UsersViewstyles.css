@@ -1,0 +1,60 @@
+/* Dark theme background */
+.main-container {
+    -fx-background-color: #1a1a1a;
+}
+
+/* Title styling */
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 10 0 20 0;
+}
+
+/* Users list container */
+.users-container {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+/* Individual user box */
+.user-box {
+    -fx-background-color: #2d2d2d;
+    -fx-background-radius: 5;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.user-box:hover {
+    -fx-background-color: #353535;
+}
+
+/* User information text */
+.user-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.user-course {
+    -fx-font-size: 14px;
+    -fx-text-fill: #888888;
+}
+
+/* ScrollPane styling */
+.scroll-pane {
+    -fx-background: #1a1a1a;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: #1a1a1a;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #3E7BFA;
+}

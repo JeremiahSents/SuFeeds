@@ -5,39 +5,82 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Post {
-    private int postId;
+    private int id;
     private User user;
     private String content;
     private LocalDateTime createdAt;
-    private List<Comment> comments;
     private int likes;
     private int dislikes;
-    private boolean isLikedByCurrentUser;
-    private boolean isDislikedByCurrentUser;
+    private String classTag;
+    private String userReaction; // to track current user's reaction
+    private List<Comment> comments;
+    private boolean isStandaloneComment;
 
-    public Post(int postId, User user, String content, LocalDateTime createdAt) {
-        this.postId = postId;
+    // Updated constructor with all necessary fields
+    public Post(int id, User user, String content, LocalDateTime createdAt, int likes, int dislikes, String classTag,boolean isStandaloneComment) {
+        this.id = id;
         this.user = user;
         this.content = content;
         this.createdAt = createdAt;
+        this.likes = likes;
+        this.dislikes = dislikes;
+        this.classTag = classTag;
         this.comments = new ArrayList<>();
-        this.likes = 0;
-        this.dislikes = 0;
+        this.isStandaloneComment = isStandaloneComment;
     }
 
-    // Getters and setters
-    public int getPostId() { return postId; }
-    public User getUser() { return user; }
-    public String getContent() { return content; }
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public List<Comment> getComments() { return comments; }
-    public int getLikes() { return likes; }
-    public int getDislikes() { return dislikes; }
-    public boolean isLikedByCurrentUser() { return isLikedByCurrentUser; }
-    public boolean isDislikedByCurrentUser() { return isDislikedByCurrentUser; }
+    // Getters
+    public int getId() {
+        return id;
+    }
 
-    public void setLikedByCurrentUser(boolean liked) { this.isLikedByCurrentUser = liked; }
-    public void setDislikedByCurrentUser(boolean disliked) { this.isDislikedByCurrentUser = disliked; }
-    public void setLikes(int likes) { this.likes = likes; }
-    public void setDislikes(int dislikes) { this.dislikes = dislikes; }
+    public boolean isStandaloneComment() {
+        return isStandaloneComment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public String getClassTag() {
+        return classTag;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public String getUserReaction() {
+        return userReaction;
+    }
+
+    // Setters
+    public void setUserReaction(String userReaction) {
+        this.userReaction = userReaction;
+    }
+
+    // Helper methods to check user reactions
+    public boolean isLikedByCurrentUser() {
+        return "like".equals(userReaction);
+    }
+
+    public boolean isDislikedByCurrentUser() {
+        return "dislike".equals(userReaction);
+    }
 }

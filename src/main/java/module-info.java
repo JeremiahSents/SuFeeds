@@ -8,6 +8,7 @@ module com.sentomero.sufeeds.javasufeeds {
 
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.sentomero.sufeeds.javasufeeds to javafx.fxml;
     exports com.sentomero.sufeeds.javasufeeds;
