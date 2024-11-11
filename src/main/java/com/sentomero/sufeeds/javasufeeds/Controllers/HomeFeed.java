@@ -50,7 +50,7 @@ public class HomeFeed {
     }
 
     private void loadCurrentUser() {
-        String query = "SELECT u.*, c.course_name FROM Users u JOIN Courses c ON u.course_id = c.course_id WHERE u.user_id = ?";
+        String query = "SELECT u.*, c.course_name FROM tbl_users u JOIN tbl_courses c ON u.course_id = c.course_id WHERE u.user_id = ?";
 
         try (Connection conn = Db_connection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -130,7 +130,7 @@ public class HomeFeed {
 
     private void saveStandaloneComment(String content, String classTag) {
         // Using the Posts table since it's already set up for this type of content
-        String query = "INSERT INTO Posts (user_id, content, class_tag, created_at, is_standalone_comment) VALUES (?, ?, ?, ?, TRUE)";
+        String query = "INSERT INTO tbl_posts (user_id, content, class_tag, created_at, is_standalone_comment) VALUES (?, ?, ?, ?, TRUE)";
 
         try (Connection conn = Db_connection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -161,14 +161,14 @@ public class HomeFeed {
         String query = """
             SELECT p.*, u.first_name, u.last_name, u.student_number, u.year_module,
                    c.course_name,
-                   (SELECT COUNT(*) FROM Reactions r WHERE r.post_id = p.post_id AND r.type = 'like') as likes_count,
-                   (SELECT COUNT(*) FROM Reactions r WHERE r.post_id = p.post_id AND r.type = 'dislike') as dislikes_count,
-                   (SELECT type FROM Reactions r WHERE r.post_id = p.post_id AND r.user_id = ?) as user_reaction,
+                   (SELECT COUNT(*) FROM tbl_reactions r WHERE r.post_id = p.post_id AND r.type = 'like') as likes_count,
+                   (SELECT COUNT(*) FROM tbl_reactions r WHERE r.post_id = p.post_id AND r.type = 'dislike') as dislikes_count,
+                   (SELECT type FROM tbl_reactions r WHERE r.post_id = p.post_id AND r.user_id = ?) as user_reaction,
                    p.class_tag,
                    COALESCE(p.is_standalone_comment, FALSE) as is_standalone_comment
-            FROM Posts p
-            JOIN Users u ON p.user_id = u.user_id
-            JOIN Courses c ON u.course_id = c.course_id
+            FROM tbl_posts p
+            JOIN tbl_users u ON p.user_id = u.user_id
+            JOIN tbl_courses c ON u.course_id = c.course_id
             ORDER BY p.created_at DESC
             """;
 
@@ -225,7 +225,7 @@ public class HomeFeed {
     }
 
     private void loadClassTags() {
-        String query = "SELECT class_code FROM Classes";
+        String query = "SELECT class_code FROM tbl_classes";
 
         try (Connection conn = Db_connection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -248,22 +248,22 @@ public class HomeFeed {
     String query = """
             SELECT p.*, u.first_name, u.last_name, u.student_number, u.year_module,
                    c.course_name,
-                   (SELECT COUNT(*) FROM Reactions r WHERE r.post_id = p.post_id AND r.type = 'like') as likes_count,
-                   (SELECT COUNT(*) FROM Reactions r WHERE r.post_id = p.post_id AND r.type = 'dislike') as dislikes_count,
-                   (SELECT type FROM Reactions r WHERE r.post_id = p.post_id AND r.user_id = ?) as user_reaction,
+                   (SELECT COUNT(*) FROM tbl_reactions r WHERE r.post_id = p.post_id AND r.type = 'like') as likes_count,
+                   (SELECT COUNT(*) FROM tbl_reactions r WHERE r.post_id = p.post_id AND r.type = 'dislike') as dislikes_count,
+                   (SELECT type FROM tbl_reactions r WHERE r.post_id = p.post_id AND r.user_id = ?) as user_reaction,
                    p.class_tag
-            FROM Posts p
-            JOIN Users u ON p.user_id = u.user_id
-            JOIN Courses c ON u.course_id = c.course_id
+            FROM tbl_posts p
+            JOIN tbl_users u ON p.user_id = u.user_id
+            JOIN tbl_courses c ON u.course_id = c.course_id
             ORDER BY p.created_at DESC
             """;
 
     private void loadCommentsForPost(Post post) {
         String query = """
                 SELECT c.*, u.first_name, u.last_name, u.student_number, u.year_module, co.course_name
-                FROM Comments c
-                JOIN Users u ON c.user_id = u.user_id
-                JOIN Courses co ON u.course_id = co.course_id
+                FROM tbl_comments c
+                JOIN tbl_users u ON c.user_id = u.user_id
+                JOIN tbl_courses co ON u.course_id = co.course_id
                 WHERE c.post_id = ?
                 ORDER BY c.created_at
                 """;
@@ -305,7 +305,7 @@ public class HomeFeed {
             return;
         }
 
-        String query = "INSERT INTO Posts (user_id, content, class_tag, created_at) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO tbl_posts (user_id, content, class_tag, created_at) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = Db_connection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -330,7 +330,7 @@ public class HomeFeed {
     private void handleReaction(Post post, String reactionType) {
         try (Connection conn = Db_connection.getConnection()) {
             // First, check if user already has a reaction
-            String checkQuery = "SELECT type FROM Reactions WHERE post_id = ? AND user_id = ?";
+            String checkQuery = "SELECT type FROM tbl_reactions WHERE post_id = ? AND user_id = ?";
             try (PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
                 checkStmt.setInt(1, post.getId());
                 checkStmt.setInt(2, currentUserId);
@@ -341,7 +341,7 @@ public class HomeFeed {
                     String existingType = rs.getString("type");
                     if (existingType.equals(reactionType)) {
                         // Remove the reaction if it's the same type
-                        String deleteQuery = "DELETE FROM Reactions WHERE post_id = ? AND user_id = ?";
+                        String deleteQuery = "DELETE FROM tbl_reactions WHERE post_id = ? AND user_id = ?";
                         try (PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery)) {
                             deleteStmt.setInt(1, post.getId());
                             deleteStmt.setInt(2, currentUserId);
@@ -349,7 +349,7 @@ public class HomeFeed {
                         }
                     } else {
                         // Update to new reaction type
-                        String updateQuery = "UPDATE Reactions SET type = ? WHERE post_id = ? AND user_id = ?";
+                        String updateQuery = "UPDATE tbl_reactions SET type = ? WHERE post_id = ? AND user_id = ?";
                         try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
                             updateStmt.setString(1, reactionType);
                             updateStmt.setInt(2, post.getId());
@@ -359,7 +359,7 @@ public class HomeFeed {
                     }
                 } else {
                     // Insert new reaction
-                    String insertQuery = "INSERT INTO Reactions (post_id, user_id, type) VALUES (?, ?, ?)";
+                    String insertQuery = "INSERT INTO tbl_reactions (post_id, user_id, type) VALUES (?, ?, ?)";
                     try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
                         insertStmt.setInt(1, post.getId());
                         insertStmt.setInt(2, currentUserId);
@@ -576,7 +576,7 @@ public class HomeFeed {
     }
 
     private void saveComment(int postId, String content) {
-        String query = "INSERT INTO Comments (post_id, user_id, content, created_at) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO tbl_comments (post_id, user_id, content, created_at) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = Db_connection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {

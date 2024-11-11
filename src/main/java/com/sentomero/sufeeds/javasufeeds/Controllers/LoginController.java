@@ -14,29 +14,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginController {
-    @FXML private TextField usernameField;
-    @FXML private PasswordField passwordFeild;
+    @FXML private TextField studentNumberField; // Changed from usernameField
+    @FXML private PasswordField passwordField;  // Fixed typo in field name
     @FXML private Button loginButton;
     @FXML private Label registerLink;
 
     @FXML
     private void initialize() {
         // Set up event handlers
-        loginButton.setOnAction(event -> handleLogin());
-        registerLink.setOnMouseClicked(event -> handleRegisterLink());
+        loginButton.setOnAction(_ -> handleLogin());
+        registerLink.setOnMouseClicked(_ -> handleRegisterLink());
+
+        // Set prompt text for student number field
+        studentNumberField.setPromptText("Enter Student Number");
     }
 
     private void handleLogin() {
-        String studentNumber = usernameField.getText().trim();
-        String password = passwordFeild.getText().trim();
+        String studentNumber = studentNumberField.getText().trim();
+        String password = passwordField.getText().trim();
 
         if (studentNumber.isEmpty() || password.isEmpty()) {
-            showAlert("Error", "Please fill in all fields.");
+            showAlert("Please enter both student number and password.");
             return;
         }
 
         try (Connection conn = Db_connection.getConnection()) {
-            String query = "SELECT * FROM users WHERE student_number = ? AND password = ?";
+            String query = "SELECT user_id FROM tbl_users WHERE student_number = ? AND password = ?";
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, studentNumber);
                 pstmt.setString(2, password); // Note: In production, use password hashing!
@@ -44,14 +47,15 @@ public class LoginController {
                 ResultSet rs = pstmt.executeQuery();
                 if (rs.next()) {
                     // Login successful
-                    loadHomeFeed(rs.getInt("id"));
+                    loadHomeFeed(rs.getInt("user_id"));
                 } else {
-                    showAlert("Error", "Invalid credentials.");
+                    showAlert("Invalid student number or password.");
                 }
             }
         } catch (SQLException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            showAlert("Error", "Database error: " + e.getMessage());
+            showAlert("Database error: " + e.getMessage());
         }
     }
 
@@ -63,8 +67,9 @@ public class LoginController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            showAlert("Error", "Could not load register page.");
+            showAlert("Could not load registration page.");
         }
     }
 
@@ -74,20 +79,21 @@ public class LoginController {
             Parent root = loader.load();
 
             HomeFeed homeFeedController = loader.getController();
-            homeFeedController.initData(userId); // You'll need to add this method to HomeFeed
+            homeFeedController.initData(userId);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            showAlert("Error", "Could not load home page.");
+            showAlert("Could not load home page.");
         }
     }
 
-    private void showAlert(String title, String content) {
+    private void showAlert(String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
+        alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();

@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegisterController {
@@ -21,6 +22,7 @@ public class RegisterController {
     @FXML private PasswordField passwordSelect;
     @FXML private PasswordField confirmpasswordSelect;
     @FXML private Button registerButton;
+    @FXML private Label loginLink;
 
     @FXML
     private void initialize() {
@@ -39,12 +41,34 @@ public class RegisterController {
                 "Year 4"
         );
 
-        registerButton.setOnAction(event -> handleRegistration());
+        // Set prompt text and listener for student number validation
+        studentNumberField.setPromptText("Enter Student Number (e.g., 202412)");
+        studentNumberField.textProperty().addListener((_, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                studentNumberField.setText(newValue.replaceAll("\\D", ""));
+            }
+            if (newValue.length() > 6) {
+                studentNumberField.setText(oldValue);
+            }
+        });
+
+        registerButton.setOnAction(_ -> handleRegistration());
+
+        // Add back to log in link handler if you have one
+        if (loginLink != null) {
+            loginLink.setOnMouseClicked(_ -> loadLoginPage());
+        }
     }
 
     private void handleRegistration() {
         // Validate input fields
         if (!validateFields()) {
+            return;
+        }
+
+        // Check if student number already exists
+        if (isStudentNumberExists(studentNumberField.getText().trim())) {
+            showAlert(Alert.AlertType.ERROR, "Error", "This student number is already registered.");
             return;
         }
 
@@ -57,8 +81,8 @@ public class RegisterController {
         String password = passwordSelect.getText();
 
         try (Connection conn = Db_connection.getConnection()) {
-            String query = "INSERT INTO users (first_name, last_name, student_number, course, year, password) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO tbl_users (first_name, last_name, student_number, course_id, year_module, password) " +
+                    "VALUES (?, ?, ?, (SELECT course_id FROM tbl_courses WHERE course_name = ?), ?, ?)";
 
             try (PreparedStatement pstmt = conn.prepareStatement(query)) {
                 pstmt.setString(1, firstName);
@@ -70,16 +94,35 @@ public class RegisterController {
 
                 int affected = pstmt.executeUpdate();
                 if (affected > 0) {
-                    showAlert(Alert.AlertType.INFORMATION, "Success", "Registration successful!");
+                    showAlert(Alert.AlertType.INFORMATION, "Success",
+                            "Registration successful!\nPlease login with your student number and password.");
                     loadLoginPage();
                 } else {
                     showAlert(Alert.AlertType.ERROR, "Error", "Registration failed.");
                 }
             }
         } catch (SQLException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Database error: " + e.getMessage());
         }
+    }
+
+    private boolean isStudentNumberExists(String studentNumber) {
+        try (Connection conn = Db_connection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(*) FROM tbl_users WHERE student_number = ?")) {
+
+            pstmt.setString(1, studentNumber);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            //noinspection CallToPrintStackTrace
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private boolean validateFields() {
@@ -95,7 +138,23 @@ public class RegisterController {
             return false;
         }
 
-        if (!passwordSelect.getText().equals(confirmpasswordSelect.getText())) {
+        // Validate student number format (should be 6 digits)
+        String studentNumber = studentNumberField.getText().trim();
+        if (!studentNumber.matches("\\d{6}")) {
+            showAlert(Alert.AlertType.ERROR, "Error",
+                    "Student number must be exactly 6 digits.");
+            return false;
+        }
+
+        // Validate password
+        String password = passwordSelect.getText();
+        if (password.length() < 6) {
+            showAlert(Alert.AlertType.ERROR, "Error",
+                    "Password must be at least 6 characters long.");
+            return false;
+        }
+
+        if (!password.equals(confirmpasswordSelect.getText())) {
             showAlert(Alert.AlertType.ERROR, "Error", "Passwords do not match.");
             return false;
         }
@@ -111,6 +170,7 @@ public class RegisterController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Could not load login page.");
         }
