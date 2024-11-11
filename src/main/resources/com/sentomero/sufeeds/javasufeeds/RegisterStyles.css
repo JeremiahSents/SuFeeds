@@ -1,42 +1,145 @@
-/* styles.css */
+/* Root styles */
 .root {
-    -fx-background-color: #f5f5f5;
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #f0f2f5);
+    -fx-font-family: 'Segoe UI', System, -apple-system, BlinkMacSystemFont;
 }
 
-.text-field, .password-field, .combo-box {
+/* First AnchorPane - Title Section */
+.root > .vbox > AnchorPane:nth-child(1) {
+    -fx-background-color: #1a73e8;
+    -fx-padding: 20px;
+    -fx-background-radius: 0 0 20px 20px;
+}
+
+/* Title "REGISTER HERE!" styling */
+.root > .vbox > AnchorPane:nth-child(1) .label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 1);
+    -fx-alignment: center;
+}
+
+/* Second AnchorPane - Form Fields Section */
+.root > .vbox > AnchorPane:nth-child(2) {
     -fx-background-color: white;
-    -fx-border-color: #e0e0e0;
-    -fx-border-radius: 4px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 1);
+    -fx-padding: 20px;
 }
 
-.text-field:focused, .password-field:focused, .combo-box:focused {
-    -fx-border-color: #2196f3;
+/* Form Labels */
+.root > .vbox > AnchorPane:nth-child(2) .label {
+    -fx-text-fill: #5f6368;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+/* Text fields and password fields */
+.text-field, .password-field {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 1);
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #1a73e8;
+    -fx-border-width: 2px;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(26, 115, 232, 0.1), 4, 0, 0, 2);
+}
+
+/* Combo boxes */
+.combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8px;
+    -fx-padding: 2px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #1a73e8;
     -fx-border-width: 2px;
 }
 
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #5f6368;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 4px 8px;
+    -fx-text-fill: #5f6368;
+}
+
+/* Third AnchorPane - Button Section */
+.root > .vbox > AnchorPane:nth-child(3) {
+    -fx-padding: 20px;
+    -fx-alignment: center;
+}
+
+/* Register button styling */
 #registerButton {
-    -fx-background-color: #2196f3;
+    -fx-background-color: #1a73e8;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-min-width: 100px;
-    -fx-min-height: 35px;
-    -fx-background-radius: 4px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px 32px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-min-width: 200px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
 }
 
 #registerButton:hover {
-    -fx-background-color: #1976d2;
+    -fx-background-color: #1557b0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0, 0, 2);
+}
+
+#registerButton:pressed {
+    -fx-background-color: #104d92;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 2, 0, 0, 0);
+}
+
+/* Login link styling */
+#loginLink {
+    -fx-text-fill: #1a73e8;
+    -fx-font-size: 13px;
     -fx-cursor: hand;
 }
 
-.link-label {
-    -fx-text-fill: #2196f3;
-    -fx-cursor: hand;
-}
-
-.link-label:hover {
+#loginLink:hover {
     -fx-underline: true;
+    -fx-text-fill: #1557b0;
 }
 
-.label {
-    -fx-text-fill: #333333;
+/* Add smooth transitions */
+* {
+    -fx-transition-duration: 0.2s;
+}
+
+/* Error state for validation */
+.error {
+    -fx-border-color: #d93025;
+    -fx-text-fill: #d93025;
+}
+
+.error-text {
+    -fx-text-fill: #d93025;
+    -fx-font-size: 12px;
+    -fx-padding: 4px 0 0 2px;
+}
+
+/* VBox spacing */
+.vbox {
+    -fx-spacing: 20px;
+    -fx-padding: 0 20px 20px 20px;
 }

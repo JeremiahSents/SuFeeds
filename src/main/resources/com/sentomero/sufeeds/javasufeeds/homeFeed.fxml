@@ -1,60 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<BorderPane fx:id="mainContainer" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sentomero.sufeeds.javasufeeds.Controllers.HomeFeed">
 
-    <!-- Main Layout -->
+<BorderPane fx:id="mainContainer"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sentomero.sufeeds.javasufeeds.Controllers.HomeFeed"
+            stylesheets="@HomeFeedstyles.css">
+
+    <!-- Left Sidebar -->
     <left>
-        <!-- Collapsible Sidebar -->
-        <VBox fx:id="leftSidebar" styleClass="left-sidebar" spacing="10.0">
-            <HBox alignment="CENTER" styleClass="sidebar-header">
-                <Label fx:id="sidebarTitle" text="Hello!" styleClass="sidebar-title"/>
-            </HBox>
+        <VBox fx:id="leftSidebar" styleClass="left-sidebar">
+            <!-- Profile Section -->
+            <VBox styleClass="profile-section" spacing="10">
+                <Label fx:id="welcomeLabel" text="Welcome!" styleClass="welcome-text"/>
+                <Separator/>
+            </VBox>
 
-            <VBox spacing="10" styleClass="nav-buttons-container">
+            <!-- Navigation Buttons -->
+            <VBox styleClass="nav-buttons" spacing="8">
+                <!-- Home Button -->
                 <Button fx:id="homeButton" styleClass="nav-button" onAction="#handleHomeButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <FontIcon iconLiteral="fas-home" styleClass="nav-icon"/>
-                            <Label text="Home" styleClass="nav-text"/>
+                            <FontIcon iconLiteral="fas-home"/>
+                            <Label text="Home"/>
                         </HBox>
                     </graphic>
                 </Button>
 
+                <!-- Profile Button -->
                 <Button fx:id="profileButton" styleClass="nav-button" onAction="#handleProfileButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <FontIcon iconLiteral="fas-user" styleClass="nav-icon"/>
-                            <Label text="Profile" styleClass="nav-text"/>
+                            <FontIcon iconLiteral="fas-user"/>
+                            <Label text="Profile"/>
                         </HBox>
                     </graphic>
                 </Button>
 
+                <!-- Users Button -->
                 <Button fx:id="usersButton" styleClass="nav-button" onAction="#handleUsersButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <FontIcon iconLiteral="fas-users" styleClass="nav-icon"/>
-                            <Label text="Users" styleClass="nav-text"/>
+                            <FontIcon iconLiteral="fas-users"/>
+                            <Label text="Users"/>
                         </HBox>
                     </graphic>
                 </Button>
 
+                <!-- Add Comment Button -->
                 <Button fx:id="addCommentButton" styleClass="nav-button" onAction="#handleAddCommentButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <FontIcon iconLiteral="fas-comment" styleClass="nav-icon"/>
-                            <Label text="Add Comment" styleClass="nav-text"/>
+                            <FontIcon iconLiteral="fas-comment"/>
+                            <Label text="Add Comment"/>
                         </HBox>
                     </graphic>
                 </Button>
 
+                <!-- Spacer -->
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <!-- Logout Button -->
                 <Button fx:id="logoutButton" styleClass="nav-button" onAction="#handleLogoutButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
-                            <FontIcon iconLiteral="fas-sign-out-alt" styleClass="nav-icon"/>
-                            <Label text="Logout" styleClass="nav-text"/>
+                            <FontIcon iconLiteral="fas-sign-out-alt"/>
+                            <Label text="Logout"/>
                         </HBox>
                     </graphic>
                 </Button>
@@ -62,19 +78,43 @@
         </VBox>
     </left>
 
-    <!-- Center Content -->
+    <!-- Main Content Area -->
     <center>
-        <VBox fx:id="feedContainer" styleClass="feed-container" spacing="10.0">
+        <VBox fx:id="feedContainer" styleClass="feed-container">
             <!-- Post Creation Area -->
-            <VBox fx:id="postCreationArea" styleClass="post-creation-area" spacing="10.0">
-                <TextArea fx:id="postInput" promptText="What's on your mind?" styleClass="post-input"/>
-                <Button fx:id="postButton" text="Post" styleClass="post-button" onAction="#handlePostButton"/>
+            <VBox styleClass="post-creation-area">
+                <VBox spacing="10">
+                    <TextArea fx:id="postInput"
+                              promptText="What's on your mind?"
+                              styleClass="post-input"
+                              wrapText="true"/>
+
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <ComboBox fx:id="classTagSelect"
+                                  styleClass="class-tag-select"
+                                  promptText="Select class"/>
+                        <Button fx:id="postButton"
+                                text="Post"
+                                styleClass="post-button"
+                                onAction="#handlePostButton"/>
+                    </HBox>
+                </VBox>
             </VBox>
 
-            <!-- Feed ScrollPane -->
-            <ScrollPane fx:id="feedScroll" fitToWidth="true" styleClass="feed-scroll">
-                <VBox fx:id="postsContainer" styleClass="posts-container"/>
+            <!-- Feed Area -->
+            <ScrollPane fx:id="feedScroll"
+                        styleClass="feed-scroll"
+                        fitToWidth="true"
+                        VBox.vgrow="ALWAYS">
+                <VBox fx:id="postsContainer"
+                      styleClass="posts-container"/>
             </ScrollPane>
         </VBox>
     </center>
+
+    <!-- Padding for the entire BorderPane -->
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
 </BorderPane>

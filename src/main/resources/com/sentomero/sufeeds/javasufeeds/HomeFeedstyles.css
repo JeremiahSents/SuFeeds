@@ -1,187 +1,149 @@
-/* Main Container Styles */
-.main-container {
-    -fx-background-color: #1E1E1E;
-    -fx-min-width: 1200px;
-    -fx-min-height: 800px;
+/* Color Variables */
+.root {
+    /* Theme colors */
+    -fx-primary: #ffffff;            /* Main background for cards, sidebar */
+    -fx-secondary: #f5f5f5;          /* Secondary background, hover states */
+    -fx-accent: #007bff;            /* Action buttons, highlights */
+
+    /* Utility colors */
+    -fx-light-gray: #e0e0e0;        /* Borders, scrollbar */
+    -fx-text-color: #333333;        /* Text, icons */
+
+    /* Shadow colors - commonly used in effects */
+    -fx-shadow-color: rgba(0,0,0,0.1);
+
+    /* Component sizing */
+    -fx-sidebar-width: 250px;
 }
 
-/* Sidebar Styles */
-.sidebar {
-    -fx-background-color: #252525;
+/* Main Container */
+.root {
+    -fx-background-color: -fx-secondary;
+}
+
+/* Sidebar */
+.left-sidebar {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-light-gray;
+    -fx-border-width: 0 1 0 0;
     -fx-padding: 15px;
     -fx-spacing: 10px;
+    -fx-min-width: -fx-sidebar-width;
+    -fx-pref-width: -fx-sidebar-width;
 }
 
-.left-sidebar {
-    -fx-min-width: 250px;
-    -fx-pref-width: 250px;
-    -fx-alignment: TOP_CENTER;
-}
-
-/* Navigation Button Styles */
+/* Navigation Buttons */
 .nav-button {
     -fx-background-color: transparent;
-    -fx-padding: 10px 15px;
-    -fx-min-width: 220px;
-    -fx-min-height: 40px;
-    -fx-cursor: hand;
+    -fx-padding: 10px;
+    -fx-text-fill: -fx-text-color;
+    -fx-alignment: CENTER_LEFT;
+    -fx-min-width: 230px;
 }
 
 .nav-button:hover {
-    -fx-background-color: #3E7BFA30;
+    -fx-background-color: -fx-secondary;
 }
 
-/* Feed Container Styles */
+.nav-icon {
+    -fx-fill: -fx-text-color;
+}
+
+/* Feed Container */
 .feed-container {
-    -fx-background-color: #1E1E1E;
+    -fx-background-color: -fx-secondary;
     -fx-padding: 20px;
     -fx-spacing: 15px;
-    -fx-alignment: TOP_CENTER;
 }
 
-/* Post Creation Area Styles */
+/* Post Creation Area */
 .post-creation-area {
-    -fx-background-color: #252525;
+    -fx-background-color: -fx-primary;
     -fx-padding: 15px;
     -fx-spacing: 10px;
-    -fx-min-width: 600px;
-    -fx-max-width: 600px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
-    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, -fx-shadow-color, 4, 0, 0, 1);
+    -fx-background-radius: 5px;
 }
 
 .post-input {
-    -fx-background-color: #333333;
-    -fx-text-fill: #FFFFFF;
-    -fx-prompt-text-fill: #888888;
-    -fx-min-height: 100px;
-    -fx-padding: 10px;
+    -fx-background-color: -fx-secondary;
     -fx-background-radius: 4px;
+    -fx-padding: 10px;
+    -fx-pref-height: 80px;
 }
 
 .post-button {
-    -fx-background-color: #3E7BFA;
-    -fx-text-fill: white;
-    -fx-min-width: 120px;
-    -fx-min-height: 35px;
-    -fx-cursor: hand;
+    -fx-background-color: -fx-accent;
+    -fx-text-fill: -fx-primary;
+    -fx-padding: 8px 16px;
     -fx-background-radius: 4px;
 }
 
 .post-button:hover {
-    -fx-background-color: #3568D4;
+    -fx-opacity: 0.9;
 }
 
-/* Feed ScrollPane Styles */
+/* Feed ScrollPane */
 .feed-scroll {
+    -fx-background: transparent;
     -fx-background-color: transparent;
-    -fx-min-width: 650px;
-    -fx-max-width: 650px;
 }
 
 .feed-scroll > .viewport {
     -fx-background-color: transparent;
 }
 
-.feed-scroll > .scroll-bar:vertical {
-    -fx-background-color: transparent;
-}
-
-/* Posts Container Styles */
+/* Posts Container */
 .posts-container {
     -fx-spacing: 15px;
     -fx-padding: 10px;
 }
 
-/* Individual Post Styles */
-.post {
-    -fx-background-color: #252525;
+/* Post Box */
+.post-box {
+    -fx-background-color: -fx-primary;
     -fx-padding: 15px;
     -fx-spacing: 10px;
-    -fx-min-width: 600px;
-    -fx-max-width: 600px;
-    -fx-background-radius: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, -fx-shadow-color, 4, 0, 0, 1);
+    -fx-background-radius: 5px;
 }
 
-/* Custom ScrollBar Styling */
+/* Comment Section */
+.comment-box {
+    -fx-background-color: -fx-secondary;
+    -fx-padding: 10px;
+    -fx-background-radius: 4px;
+}
+
+/* Reaction Buttons */
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+    -fx-padding: 5px 10px;
+}
+
+.button:hover {
+    -fx-background-color: -fx-secondary;
+}
+
+/* ScrollBar Styling */
 .scroll-bar:vertical {
     -fx-background-color: transparent;
-    -fx-padding: 0 0 0 1;
+    -fx-pref-width: 12px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: -fx-light-gray;
+    -fx-background-radius: 6px;
 }
 
 .scroll-bar:vertical .track {
     -fx-background-color: transparent;
 }
 
-.scroll-bar:vertical .thumb {
-    -fx-background-color: #3E7BFA40;
-    -fx-background-radius: 4px;
-}
-
-.scroll-bar:vertical .thumb:hover {
-    -fx-background-color: #3E7BFA80;
-}
-/* Add these to your existing styles.css */
-
-/* Sidebar Transition States */
-.left-sidebar {
-    -fx-min-width: 60px;
-    -fx-pref-width: 60px;
-    -fx-background-color: #252525;
-    -fx-padding: 15px 10px;
-    -fx-spacing: 10px;
-    -fx-alignment: TOP_CENTER;
-    -fx-transition: all 0.3s ease;
-}
-
-.left-sidebar:hover {
-    -fx-min-width: 250px;
-    -fx-pref-width: 250px;
-}
-
-/* Hide text labels by default */
-.nav-text {
-    -fx-opacity: 0;
-    -fx-text-fill: white;
-}
-
-/* Show text labels on hover */
-.left-sidebar:hover .nav-text {
-    -fx-opacity: 1;
-}
-
-/* Icon styles */
-.nav-icon {
-    -fx-icon-size: 20px;
-    -fx-icon-color: #CCCCCC;
-}
-
-/* Adjust nav button for collapsed state */
-.nav-button {
-    -fx-background-color: transparent;
-    -fx-padding: 10px;
-    -fx-alignment: CENTER_LEFT;
-    -fx-min-width: 40px;
-    -fx-cursor: hand;
-}
-
-.left-sidebar:hover .nav-button {
-    -fx-min-width: 230px;
-}
-
-/* Sidebar header styles */
-.sidebar-title {
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-}
-
-/* Hide sidebar title text when collapsed */
-.sidebar-title {
-    -fx-opacity: 0;
-}
-
-.left-sidebar:hover .sidebar-title {
-    -fx-opacity: 1;
+/* Class Tag Style */
+.class-tag {
+    -fx-background-color: -fx-secondary;
+    -fx-padding: 4px 8px;
+    -fx-background-radius: 3px;
 }
