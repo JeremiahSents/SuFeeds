@@ -1,9 +1,11 @@
 package com.sentomero.sufeeds.javasufeeds.Controllers;
 
-import com.sentomero.sufeeds.javasufeeds.Database.Db_connection;
+import com.sentomero.sufeeds.javasufeeds.Utilities.CSSLoader;
+import com.sentomero.sufeeds.javasufeeds.Utilities.Db_connection;
 import com.sentomero.sufeeds.javasufeeds.Models.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,13 +17,16 @@ import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
+
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.sql.*;
 import java.util.Optional;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
-public class HomeFeed {
+public class HomeController implements Initializable {
     @FXML
     private BorderPane mainContainer;
     @FXML
@@ -38,8 +43,13 @@ public class HomeFeed {
     private User currentUser;
     private int currentUserId;
 
-    @FXML
-    private void initialize() {
+     // Root container in your FXML file
+
+    @Override
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadCSS();
+        testCSSPath();
         Platform.runLater(this::loadClassTags);
     }
 
@@ -48,6 +58,26 @@ public class HomeFeed {
         loadCurrentUser();
         loadPosts();
     }
+    private void loadCSS() {
+        Platform.runLater(() -> {
+            Scene scene = mainContainer.getScene();
+            if (scene != null) {
+                scene.getStylesheets().clear();
+                scene.getStylesheets().add(getClass().getResource("/com/sentomero/sufeeds/views/feed.css").toExternalForm());
+            } else {
+                System.out.println("Scene is null. CSS not applied.");
+            }
+        });
+    }
+    private void testCSSPath() {
+        URL cssURL = getClass().getResource("/com/sentomero/sufeeds/views/feed.css");
+        if (cssURL == null) {
+            System.out.println("CSS file not found.");
+        } else {
+            System.out.println("CSS file found at: " + cssURL);
+        }
+    }
+
 
     private void loadCurrentUser() {
         String query = "SELECT u.*, c.course_name FROM tbl_users u JOIN tbl_courses c ON u.course_id = c.course_id WHERE u.user_id = ?";
@@ -380,7 +410,7 @@ public class HomeFeed {
     @FXML
     private void handleProfileButton() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/javasufeeds/profile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/views/profile.fxml"));
             Parent root = loader.load();
 
             ProfileContoller controller = loader.getController();
@@ -401,7 +431,7 @@ public class HomeFeed {
     @FXML
     private void handleUsersButton() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/javasufeeds/users.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/views/users.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
@@ -426,7 +456,7 @@ public class HomeFeed {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/javasufeeds/login.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/views/login.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) mainContainer.getScene().getWindow();
                 stage.setScene(new Scene(root));

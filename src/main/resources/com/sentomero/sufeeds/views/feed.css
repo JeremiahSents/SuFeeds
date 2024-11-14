@@ -1,0 +1,130 @@
+/* Main Container */
+#mainContainer {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Left Sidebar Styling */
+#leftSidebar {
+    -fx-background-color: #2D2D2D;
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+    -fx-pref-width: 250px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+/* Welcome Section */
+.welcome-text {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10px 0;
+}
+
+.separator {
+    -fx-background-color: #3D3D3D;
+    -fx-opacity: 0.6;
+}
+
+/* Navigation Buttons */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #BDBDBD;
+    -fx-padding: 12px 16px;
+    -fx-cursor: hand;
+    -fx-background-radius: 8px;
+    -fx-min-width: 210px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.nav-button:hover {
+    -fx-background-color: #3A3A3A;
+}
+
+.nav-button:pressed {
+    -fx-background-color: #444444;
+}
+
+.nav-button .label {
+    -fx-text-fill: #BDBDBD;
+    -fx-font-size: 14px;
+}
+
+.nav-button:hover .label {
+    -fx-text-fill: white;
+}
+
+/* FontIcon styling */
+.nav-button .ikonli-font-icon {
+    -fx-icon-color: #BDBDBD;
+    -fx-icon-size: 16;
+}
+
+.nav-button:hover .ikonli-font-icon {
+    -fx-icon-color: white;
+}
+
+/* Logout Button Special Styling */
+#logoutButton {
+    -fx-border-color: #444444;
+    -fx-border-radius: 8px;
+}
+
+#logoutButton:hover {
+    -fx-background-color: #463232;
+    -fx-border-color: #543939;
+}
+
+/* Feed Container Styling */
+#feedContainer {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-spacing: 20px;
+}
+
+/* Post Creation Area */
+.post-creation-area {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-background-radius: 8px;
+}
+
+#postInput {
+    -fx-pref-height: 100px;
+    -fx-background-radius: 4px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+
+#classTagSelect {
+    -fx-min-width: 150px;
+}
+
+#postButton {
+    -fx-background-color: #2D2D2D;
+    -fx-text-fill: white;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+#postButton:hover {
+    -fx-background-color: #444444;
+}
+
+/* ScrollPane Styling */
+#feedScroll {
+    -fx-background: white;
+    -fx-background-color: transparent;
+}
+
+#feedScroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+#postsContainer {
+    -fx-background-color: transparent;
+    -fx-spacing: 15px;
+    -fx-padding: 10px;
+}

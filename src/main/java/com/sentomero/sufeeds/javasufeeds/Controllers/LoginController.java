@@ -1,6 +1,6 @@
 package com.sentomero.sufeeds.javasufeeds.Controllers;
 
-import com.sentomero.sufeeds.javasufeeds.Database.Db_connection;
+import com.sentomero.sufeeds.javasufeeds.Utilities.Db_connection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,13 +55,13 @@ public class LoginController {
         } catch (SQLException e) {
             //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            showAlert("Database error: " + e.getMessage());
+            showAlert("Utilities error: " + e.getMessage());
         }
     }
 
     private void handleRegisterLink() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/javasufeeds/register.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/views/register.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) registerLink.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -75,11 +75,11 @@ public class LoginController {
 
     private void loadHomeFeed(int userId) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/javasufeeds/homeFeed.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/views/home.fxml"));
             Parent root = loader.load();
 
-            HomeFeed homeFeedController = loader.getController();
-            homeFeedController.initData(userId);
+            HomeController homeControllerController = loader.getController();
+            homeControllerController.initData(userId);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(new Scene(root));

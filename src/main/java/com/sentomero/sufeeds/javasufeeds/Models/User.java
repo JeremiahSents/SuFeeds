@@ -1,12 +1,12 @@
 package com.sentomero.sufeeds.javasufeeds.Models;
 
 public class User {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String studentNumber;
-    private String course;
-    private String yearModule;
+    private final int id;
+    private final String firstName;
+    private final String lastName;
+    private final String studentNumber;
+    private final String course;
+    private final String yearModule;
 
     public User(int id, String firstName, String lastName, String studentNumber, String course, String yearModule) {
         this.id = id;

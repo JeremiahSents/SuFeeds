@@ -1,5 +1,6 @@
 package com.sentomero.sufeeds.javasufeeds;
 
+import com.sentomero.sufeeds.javasufeeds.Utilities.CSSLoader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,19 +14,15 @@ public class SUFeedsApplication extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load the login view as the initial view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/javasufeeds/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/views/Login.fxml"));
             Parent root = loader.load();
 
             // Create the scene
             Scene scene = new Scene(root);
 
             // Load CSS file
-            URL cssUrl = getClass().getResource("/com/sentomero/sufeeds/javasufeeds/styles.css");
-            if (cssUrl != null) {
-                scene.getStylesheets().add(cssUrl.toExternalForm());
-            } else {
-                System.err.println("Warning: Could not load CSS file");
-            }
+            // In the start method, after creating the scene
+            CSSLoader.loadCSS(scene, "styles.css");
 
             // Set up the primary stage
             primaryStage.setTitle("SU Feeds");

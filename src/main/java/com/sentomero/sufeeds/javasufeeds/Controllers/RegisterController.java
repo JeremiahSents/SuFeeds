@@ -1,6 +1,6 @@
 package com.sentomero.sufeeds.javasufeeds.Controllers;
 
-import com.sentomero.sufeeds.javasufeeds.Database.Db_connection;
+import com.sentomero.sufeeds.javasufeeds.Utilities.Db_connection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -104,7 +104,7 @@ public class RegisterController {
         } catch (SQLException e) {
             //noinspection CallToPrintStackTrace
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Database error: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", "Utilities error: " + e.getMessage());
         }
     }
 
@@ -164,7 +164,7 @@ public class RegisterController {
 
     private void loadLoginPage() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/javasufeeds/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/sentomero/sufeeds/views/login.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) registerButton.getScene().getWindow();
             stage.setScene(new Scene(root));

@@ -8,21 +8,20 @@
 <BorderPane fx:id="mainContainer"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sentomero.sufeeds.javasufeeds.Controllers.HomeFeed"
-            stylesheets="@HomeFeedstyles.css">
+            fx:controller="com.sentomero.sufeeds.javasufeeds.Controllers.HomeController"
+            stylesheets="@feed.css">
 
     <!-- Left Sidebar -->
     <left>
-        <VBox fx:id="leftSidebar" styleClass="left-sidebar">
+        <VBox fx:id="leftSidebar">
             <!-- Profile Section -->
-            <VBox styleClass="profile-section" spacing="10">
+            <VBox spacing="10">
                 <Label fx:id="welcomeLabel" text="Welcome!" styleClass="welcome-text"/>
                 <Separator/>
             </VBox>
 
             <!-- Navigation Buttons -->
-            <VBox styleClass="nav-buttons" spacing="8">
-                <!-- Home Button -->
+            <VBox spacing="8">
                 <Button fx:id="homeButton" styleClass="nav-button" onAction="#handleHomeButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
@@ -32,7 +31,6 @@
                     </graphic>
                 </Button>
 
-                <!-- Profile Button -->
                 <Button fx:id="profileButton" styleClass="nav-button" onAction="#handleProfileButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
@@ -42,7 +40,6 @@
                     </graphic>
                 </Button>
 
-                <!-- Users Button -->
                 <Button fx:id="usersButton" styleClass="nav-button" onAction="#handleUsersButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
@@ -52,7 +49,6 @@
                     </graphic>
                 </Button>
 
-                <!-- Add Comment Button -->
                 <Button fx:id="addCommentButton" styleClass="nav-button" onAction="#handleAddCommentButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
@@ -62,10 +58,7 @@
                     </graphic>
                 </Button>
 
-                <!-- Spacer -->
                 <Region VBox.vgrow="ALWAYS"/>
-
-                <!-- Logout Button -->
                 <Button fx:id="logoutButton" styleClass="nav-button" onAction="#handleLogoutButton">
                     <graphic>
                         <HBox spacing="10" alignment="CENTER_LEFT">
@@ -80,39 +73,23 @@
 
     <!-- Main Content Area -->
     <center>
-        <VBox fx:id="feedContainer" styleClass="feed-container">
-            <!-- Post Creation Area -->
-            <VBox styleClass="post-creation-area">
+        <VBox fx:id="feedContainer">
+            <VBox fx:id="postCreationArea" styleClass="post-creation-area">
                 <VBox spacing="10">
-                    <TextArea fx:id="postInput"
-                              promptText="What's on your mind?"
-                              styleClass="post-input"
-                              wrapText="true"/>
-
+                    <TextArea fx:id="postInput" promptText="What's on your mind?" wrapText="true"/>
                     <HBox spacing="10" alignment="CENTER_RIGHT">
-                        <ComboBox fx:id="classTagSelect"
-                                  styleClass="class-tag-select"
-                                  promptText="Select class"/>
-                        <Button fx:id="postButton"
-                                text="Post"
-                                styleClass="post-button"
-                                onAction="#handlePostButton"/>
+                        <ComboBox fx:id="classTagSelect" promptText="Select class"/>
+                        <Button fx:id="postButton" text="Post" onAction="#handlePostButton"/>
                     </HBox>
                 </VBox>
             </VBox>
 
-            <!-- Feed Area -->
-            <ScrollPane fx:id="feedScroll"
-                        styleClass="feed-scroll"
-                        fitToWidth="true"
-                        VBox.vgrow="ALWAYS">
-                <VBox fx:id="postsContainer"
-                      styleClass="posts-container"/>
+            <ScrollPane fx:id="feedScroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="postsContainer"/>
             </ScrollPane>
         </VBox>
     </center>
 
-    <!-- Padding for the entire BorderPane -->
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

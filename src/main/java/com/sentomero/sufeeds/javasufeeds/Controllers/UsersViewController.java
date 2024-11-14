@@ -1,6 +1,6 @@
 package com.sentomero.sufeeds.javasufeeds.Controllers;
 
-import com.sentomero.sufeeds.javasufeeds.Database.Db_connection;
+import com.sentomero.sufeeds.javasufeeds.Utilities.Db_connection;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;

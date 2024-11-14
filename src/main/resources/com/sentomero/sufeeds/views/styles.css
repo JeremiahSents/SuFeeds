@@ -1,0 +1,134 @@
+/* Title sections (Welcome and Register Here) */
+.root > .vbox > AnchorPane:nth-child(1) {
+    -fx-padding: 20px;
+}
+
+.root > .vbox > AnchorPane:nth-child(1) .label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #A3B2A6; /* Main muted green-gray */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
+}
+
+/* Form section styling */
+.root > .vbox > AnchorPane:nth-child(2) {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 1);
+    -fx-padding: 20px;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #66746B; /* Main text color */
+    -fx-font-size: 13px;
+}
+
+/* Text fields and password fields */
+.text-field, .password-field {
+    -fx-background-color: #F1F3F2; /* Background color */
+    -fx-background-radius: 4px;
+    -fx-border-color: #A3B2A6; /* Border color */
+    -fx-border-radius: 4px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 4, 0, 0, 1);
+}
+
+/* Focused input fields */
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #A3B2A6; /* Muted green-gray */
+    -fx-border-width: 2px;
+    -fx-background-color: #F1F3F2;
+    -fx-effect: dropshadow(gaussian, rgba(163, 178, 166, 0.1), 4, 0, 0, 2);
+}
+
+/* Combo box styling */
+.combo-box {
+    -fx-background-color: #F1F3F2; /* Background color */
+    -fx-background-radius: 4px;
+    -fx-border-color: #A3B2A6; /* Border color */
+    -fx-border-radius: 4px;
+    -fx-padding: 2px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #A3B2A6; /* Muted green-gray */
+    -fx-border-width: 2px;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #66746B; /* Main text color */
+}
+
+.combo-box .list-cell {
+    -fx-padding: 4px 8px;
+    -fx-text-fill: #66746B; /* Main text color */
+}
+
+/* Button styling (works for both login and register buttons) */
+#loginButton, #registerButton {
+    -fx-background-color: #A3B2A6; /* Main muted green-gray */
+    -fx-text-fill: #F1F3F2; /* Background color */
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-padding: 10px 32px;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
+}
+
+#loginButton:hover, #registerButton:hover {
+    -fx-background-color: #75857A; /* Darker green-gray */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 6, 0, 0, 2);
+}
+
+#loginButton:pressed, #registerButton:pressed {
+    -fx-background-color: #3F4B45; /* Darkest green-gray */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 2, 0, 0, 0);
+}
+
+/* Link styling (for both register and login links) */
+#registerLink, #loginLink {
+    -fx-text-fill: #A3B2A6; /* Main muted green-gray */
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+#registerLink:hover, #loginLink:hover {
+    -fx-text-fill: #75857A; /* Darker green-gray */
+    -fx-underline: true;
+}
+
+/* Error states */
+.error {
+    -fx-border-color: #f44336; /* Error color */
+    -fx-text-fill: #f44336;
+}
+
+.error-text {
+    -fx-text-fill: #f44336;
+    -fx-font-size: 12px;
+    -fx-padding: 4px 0 0 2px;
+}
+
+/* Success states */
+.success {
+    -fx-border-color: #4caf50; /* Success color */
+    -fx-text-fill: #4caf50;
+}
+
+/* Global transition animation */
+* {
+    -fx-transition-duration: 0.2s;
+}
+
+/* VBox spacing */
+.vbox {
+    -fx-spacing: 16px;
+    -fx-padding: 0 20px 20px 20px;
+}
